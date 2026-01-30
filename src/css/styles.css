@@ -1,9 +1,4 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
+
 /* Common styles */
 @import url('./reset.css');
 @import url('./base.css');
@@ -16,3 +11,136 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f5f5f5;
+  color: #212121;
+}
+
+/* Панель пошуку */
+.form {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  background: #3f51b5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form label {
+  display: flex;
+  align-items: center;
+}
+
+.form input[name="search-text"] {
+  width: 320px;
+  height: 40px;
+  padding: 0 12px;
+
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+  outline: none;
+}
+
+.form input[name="search-text"]:focus {
+  border-color: #ffffff;
+}
+
+.form button[type="submit"] {
+  height: 40px;
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111;
+  cursor: pointer;
+}
+
+.form button[type="submit"]:hover {
+  opacity: 0.92;
+}
+
+/* Галерея */
+.gallery {
+  list-style: none;
+  margin: 0;
+  padding: 24px 16px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: calc((100% - 72px) / 4);
+  max-width: 360px;
+
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  overflow: hidden;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gallery-image {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Блок статистики під фото */
+.gallery-item > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-top: 1px solid #e6e6e6;
+  background: #fff;
+}
+
+/* Кожна метрика: Likes, Views, Comments, Downloads */
+.gallery-item > div > div {
+  flex: 1;
+  text-align: center;
+}
+
+/* Тексти всередині метрик */
+.gallery-item > div > div p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.gallery-item > div > div p:first-child {
+  font-weight: 600;
+}
+
+.is-hidden {
+  display: none;
+}
+
