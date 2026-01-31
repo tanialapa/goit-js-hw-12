@@ -12,7 +12,7 @@ import {
 } from './js/render-functions';
 
 const form = document.querySelector('.form');
-const submit = document.querySelector('[type="submit"]');
+// const submit = document.querySelector('[type="submit"]');
 const loadMoreBtn = document.querySelector('.load-more');
 const ERROR_POSITION = 'topRight';
 
@@ -20,16 +20,18 @@ let page = 1;
 let query = '';
 let totalHits = 0;
 let loadedHits = 0;
-
-submit.addEventListener('click', onFormSubmit);
+form.addEventListener('click', onFormSubmit);
 loadMoreBtn.addEventListener('click', onLoadMore);
 
 async function onFormSubmit(event) {
   event.preventDefault();
-
+  hideLoadMoreButton();
+  
   const value = form.elements['search-text'].value.trim();
-  if (!value) return;
-
+  if (!value) {
+    showError('Please enter a search query.')
+    return
+  }
   query = value;
   page = 1;
   totalHits = 0;
@@ -51,7 +53,6 @@ async function onFormSubmit(event) {
       showEndMessage();
     }
 
-    smoothScroll();
   } catch {
     showError('Oops, something went wrong. Please try again later.');
   } finally {
@@ -94,7 +95,14 @@ async function onLoadMore() {
 function showError(message) {
   iziToast.error({ message, position: ERROR_POSITION });
 }
+function showEndMessage() {
+  hideLoadMoreButton();
 
+  iziToast.info({
+    message: "We're sorry, but you've reached the end of search results.",
+    position: ERROR_POSITION,
+  });
+}
 // функція яка вставляє картинки
 function renderResults(hits) {
   if (!hits.length) {
