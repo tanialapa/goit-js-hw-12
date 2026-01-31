@@ -12,7 +12,7 @@ import {
 } from './js/render-functions';
 
 const form = document.querySelector('.form');
-// const submit = document.querySelector('[type="submit"]');
+const submit = document.querySelector('[type="submit"]');
 const loadMoreBtn = document.querySelector('.load-more');
 const ERROR_POSITION = 'topRight';
 
@@ -20,7 +20,7 @@ let page = 1;
 let query = '';
 let totalHits = 0;
 let loadedHits = 0;
-form.addEventListener('click', onFormSubmit);
+submit.addEventListener('click', onFormSubmit);
 loadMoreBtn.addEventListener('click', onLoadMore);
 
 async function onFormSubmit(event) {
